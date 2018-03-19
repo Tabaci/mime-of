@@ -1,3 +1,8 @@
+<p align="left">
+<a href="https://travis-ci.org/Tabaci/mimisbrunnr"><img src="https://travis-ci.org/Tabaci/mimisbrunnr.svg?branch=master"></a>
+<a href="https://codecov.io/gh/Tabaci/mimisbrunnr"><img src="https://codecov.io/gh/Tabaci/mimisbrunnr/branch/master/graph/badge.svg" /></a>
+</p>
+
 # mimisbrunnr
 
 This *npm* module is used to resolve files with extensions (or file extensions 
