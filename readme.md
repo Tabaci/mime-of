@@ -7,10 +7,10 @@ the following modules:
 * [mime-types](https://www.npmjs.com/package/mime-types)
 * [mime](https://www.npmjs.com/package/mime)
 
-The thing that is different with this module from the previous mentioned ones is 
-its implementation. Whilst we could theoretically go all day arguing as to which 
-module is implemented in the best manner, it only ever comes down to which module 
-you prefer to use.
+The thing that is different with this module from the previouslu mentioned ones 
+is its implementation. Whilst we theoretically could go all day arguing as to 
+which module is implemented in the best manner, it only ever comes down to which 
+module you prefer to use.
 
 Mímisbrunnr is the well associated with the being Mímir, whose name in Swedish 
 is Mimer, which in turn contains the word *mime*. As such, you can clearly see, 
@@ -50,15 +50,15 @@ console.log(mime('txt')) // Output: null
 /* The following is an unrecognized file extension. As such, we might wish to 
  * handle that differently too:
  */
-console.log(mime('.whitepowderandstuff')) // Output: null
+console.log(mime('.whitepowderandsnuffbecomesgrey')) // Output: null
 ```
 
-As you can tell, anything that is unrecognized will, similarly to the 
-*mime-types* module return something that we can handle further: in the case of 
-this module, it returns `null`.
+As you can tell, anything that is unrecognized will similarly to the 
+*mime-types* module, return something that we can handle further: in the case of 
+this module, anything that is unrecognized returns `null`.
 
 ```
-let mimeType = mime('.whitepowderandstuff') || 'text/plain'
+let mimeType = mime('.whitepowderandsnuffbecomesgrey') || 'text/plain'
 ```
 
 ## License
