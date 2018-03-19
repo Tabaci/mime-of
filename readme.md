@@ -1,54 +1,66 @@
-# resolve-mime
+# mimisbrunnr
 
-This *npm* module provides a means of resolving any* file extension to its 
-respective MIME type.
+This *npm* module is used to resolve files with extensions (or file extensions 
+by themselves) into their respective MIME types. It solves the same problem as 
+the following modules: 
 
-<sub><sup>* In accordance with all the file extensions currently supported.</sup></sub>
+* [mime-types](https://www.npmjs.com/package/mime-types)
+* [mime](https://www.npmjs.com/package/mime)
+
+The thing that is different with this module from the previous mentioned ones is 
+its implementation. Whilst we could theoretically go all day arguing as to which 
+module is implemented in the best manner, it only ever comes down to which module 
+you prefer to use.
+
+Mímisbrunnr is the well associated with the being Mímir, whose name in Swedish 
+is Mimer, which in turn contains the word *mime*. As such, you can clearly see, 
+*mimisbrunnr* is the perfect most obvious name for a module managing MIME types.
 
 ## Installation
 
 ```javascript
-$ npm install resolve-mime
+npm install mimirsbrunnr
 ```
 
 ## Usage
 
-In order to use *resolve-mime*, we first need to require it:
+First and foremost, you need to require *mimisbrunnr*:
 
 ```javascript
-const mimeOf = require('mime-of').mimeOf
+const mime = require('mimirsbrunnr').mime
 ```
 
-Now, we can send in a file extension to the `mimeOf` function, to get back the 
-respective MIME type for that file extension:
+`mime` is a function that, when called with a string representing a file with an 
+extension (or a file extension without a file name), resolves to a MIME type:
 
 ```javascript
-console.log(mimeOf('js'))
+console.log(mime('file.txt')) // Output: text/plain
+console.log(mime('minecraft.jar')) // Output: application/java-archive
+console.log(mime('hello.js')) // Output: application/javascript
 
-// Expected output: application/javascript
+console.log(mime('.txt')) // Output: text/plain
+console.log(mime('.jar')) // Output: application/java-archive
+console.log(mime('.js')) // Output: application/javascript
 
-console.log(mimeOf('htm'))
+/* The following is viewed as a file without an extension, as such we might wish 
+ * to handle it differently:
+ */
+console.log(mime('txt')) // Output: null
 
-// Expected output: application/html
-
-console.log(mimeOf('gif'))
-
-// Expected output: image/gif
-
-console.log(mimeOf('exe'))
-
-// Expected output: application/octet-stream
-
-console.log(mimeOf('unrecognized'))
-
-// Expected output: application/octet-stream
+/* The following is an unrecognized file extension. As such, we might wish to 
+ * handle that differently too:
+ */
+console.log(mime('.whitepowderandstuff')) // Output: null
 ```
 
-Should you prefer to include the period in the file extension, you are free to 
-do so:
+As you can tell, anything that is unrecognized will, similarly to the 
+*mime-types* module return something that we can handle further: in the case of 
+this module, it returns `null`.
 
 ```
-console.log(mimeOf('.js'))
-
-// Expected output: application/javascript
+let mimeType = mime('.whitepowderandstuff') || 'text/plain'
 ```
+
+## License
+
+This module, and the code therein, is licensed under MIT.

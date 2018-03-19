@@ -1,7 +1,7 @@
 {
-  "name": "mime-of",
+  "name": "mimisbrunnr",
   "version": "1.0.0",
-  "description": "Highly tested means of resolving a file extension to its respective MIME type.",
+  "description": "Highly tested means of resolving a file and extension to its respective MIME type.",
   "main": "./lib/index.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha"
@@ -26,6 +26,7 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^5.0.4"
+    "mocha": "^5.0.4",
+    "nyc": "^11.6.0"
   }
 }

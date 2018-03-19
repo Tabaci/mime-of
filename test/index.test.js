@@ -1,38 +1,73 @@
 
 const expect = require('chai').expect
-const resolve = require('./../lib/index.js').resolve
+const mime = require('./../lib/index.js').mime
+const mimeTypes = require('./../lib/mime-types')
+
+describe('mime-types', function () {
+	it('should not contain multiple entries inside a key', function () {
+		for (let [key, ] of Object.entries(mimeTypes))
+			expect(key.split(/\s+/)).to.have.lengthOf(1)
+	})
+})
 
 describe('resolve-mime', function () {
-	describe('#resolve (ext)', function () {
-		it('should resolve to a file extensions respective MIME type when called', function () {
+	describe('#mime (ext)', function () {
+		it('should resolve a file extensions to its respective MIME type', function () {
 			// JSON
 			let json
 			
-			json = resolve('json')
-			expect(json).to.equal('application/json')
+			json = mime('json')
+			expect(json).to.equal('application/octet-stream')
 			
-			json = resolve('.json')
+			json = mime('.json')
 			expect(json).to.equal('application/json')
 			
 			// JavaScript
 			let javascript
 			
-			javascript = resolve('js')
+			javascript = mime('js')
+			expect(javascript).to.equal('application/octet-stream')
+			
+			javascript = mime('.js')
+			expect(javascript).to.equal('application/javascript')
+		})
+		
+		it('should resolve a file name and extension to a MIME type', function () {
+			// JSON
+			let json
+			
+			json = mime('file.json')
+			expect(json).to.equal('application/json')
+			
+			// JavaScript
+			let javascript
+			
+			javascript = mime('.js')
+			expect(javascript).to.equal('application/javascript')
+		})
+		
+		it('should be case insensitive', function () {
+			// JSON
+			let json
+			
+			json = mime('file.JSon')
+			expect(json).to.equal('application/json')
+			
+			json = mime('.jSon')
+			expect(json).to.equal('application/json')
+			
+			// JavaScript
+			let javascript
+			
+			javascript = mime('.JS')
 			expect(javascript).to.equal('application/javascript')
 			
-			javascript = resolve('.js')
+			javascript = mime('test.Js')
 			expect(javascript).to.equal('application/javascript')
-			
-			/* TODO: add one test per file extension available to make sure none 
-			 *       are wrong. Also make sure to document the 'sources' as for 
-			 *       why the given file extenson has the MIME type.
-			 *
-			 *       On many occasions, there are multiple MIME types set as for 
-			 *       one file extension (e.g. application/javascript, 
-			 *       application/x-javascript). For some, slightly more obscure, 
-			 *       file extensions, there may be entries in the MIME types 
-			 *       object that are not up to date with the current standards.
-			 */
+		})
+		
+		it('should return null if not recognized', function () {
+			expect(mime('test.cooltext')).to.be.null
 		})
 	})
 })
