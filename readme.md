@@ -24,7 +24,7 @@ is Mimer, which in turn contains the word *mime*. As such, you can clearly see,
 ## Installation
 
 ```javascript
-npm install mimirsbrunnr
+npm install mimisbrunnr
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ npm install mimirsbrunnr
 First and foremost, you need to require *mimisbrunnr*:
 
 ```javascript
-const mime = require('mimirsbrunnr').mime
+const mime = require('mimisbrunnr').mime
 ```
 
 `mime` is a function that, when called with a string representing a file with an 
